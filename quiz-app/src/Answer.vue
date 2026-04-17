@@ -1,5 +1,5 @@
 <template>
-    <input type="radio" :id="id" :value="value" :disabled="disabled" v-model="model" />
+    <input type="radio" :id="id" :value="value" :disabled="disabled" @change="onChange" v-model="model" />
     <label :for="id" :class="classes">
         {{ value }}
     </label>
@@ -10,6 +10,11 @@
 import { computed } from 'vue'
 
 const model = defineModel()
+const emits = defineEmits(['change'])
+
+const onChange = (event) => {
+  emits('change', event)
+}
 
 const props = defineProps({
     value: String,

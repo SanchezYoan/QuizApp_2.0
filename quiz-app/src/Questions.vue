@@ -3,23 +3,32 @@
         <ul>
             <h2>{{ props.question.title }}</h2>
             <li v-for="(choice, index) in props.question.choices" :key="choice">
-               <Answer :value="choice" :id="`answer-${index}`" :correct_answer="props.question.correct_answer" :disabled="hasAnswer" v-model="answer" />
+               <Answer :value="choice" @change="handleAnswer" :id="`answer-${index}`" :correct_answer="props.question.correct_answer" :disabled="hasAnswer" v-model="answer" />
             </li>
-            <button @click="emits('answer', answer)" :disabled="!hasAnswer">Question suivante</button>
+            <button @click="onValidate" :disabled="!hasAnswer">Question suivante</button>
         </ul>
-
     </div>
 </template>
 
 <script setup>
-import { ref, defineEmits, computed } from 'vue'
+import { ref, defineEmits, computed, watch } from 'vue'
 import Answer from './Answer.vue'
 
 const props = defineProps({
     question: Object
 })
 const answer = ref(null)
-const emits = defineEmits(['change'])
+const selectedAnswer = ref(null)
+const emits = defineEmits(['answer'])
+
+const onValidate = () => {
+    emits('answer', selectedAnswer.value)
+}
+
+const handleAnswer = (answer) => {
+    selectedAnswer.value = answer.target.value
+    // console.log(answer.target.value)
+}
 
 const hasAnswer = computed(() => {
     return answer.value !== null
