@@ -11,12 +11,19 @@
 </template>
 
 <script setup>
-import { ref, defineEmits, computed, watch } from 'vue'
+import { ref, defineEmits, computed, watch, onMounted } from 'vue'
 import Answer from './Answer.vue'
+
+const randomChoices = ref([])
 
 const props = defineProps({
     question: Object
 })
+
+onMounted(() => {
+    randomChoices.value = props.question.choices.sort(() => Math.random() - 0.5)
+})
+
 const answer = ref(null)
 const selectedAnswer = ref(null)
 const emits = defineEmits(['answer'])
