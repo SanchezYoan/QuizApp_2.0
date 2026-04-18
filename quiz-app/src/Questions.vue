@@ -1,8 +1,8 @@
 <template>
-    <div>
+    <div class="card">
         <ul>
-            <h2>{{ props.question.title }}</h2>
-            <li v-for="(choice, index) in props.question.choices" :key="choice">
+            <h2 class="question-title">{{ props.question.question }}</h2>
+            <li class="card-item" v-for="(choice, index) in props.question.choices" :key="choice">
                <Answer :value="choice" @change="handleAnswer" :id="`answer-${index}`" :correct_answer="props.question.correct_answer" :disabled="hasAnswer" v-model="answer" />
             </li>
             <button @click="onValidate" :disabled="!hasAnswer">Question suivante</button>
@@ -36,6 +36,20 @@ const hasAnswer = computed(() => {
 </script>
 
 <style scoped>
+.card {
+    margin: 2rem;
+}
+button {
+    display: block;
+    margin-left: auto;
+}
 
+.question-container {
+    margin: 0 1rem;
+}
+
+ul li {
+    list-style: none;
+}
 </style>
 

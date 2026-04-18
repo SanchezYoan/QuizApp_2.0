@@ -2,10 +2,10 @@
   <div>
     <h1>{{ quiz.title }}</h1>  
 
-    <div v-if="state='questions'">
+    <div class="container">
         <Progress :value="step" :max="quiz.questions.length" />
         <Questions v-if="state === 'questions'" :key="step" :question="currentQuestion" @answer="handleAnswer"/>
-        <Recap v-if="state === 'result'" :score="score" :answers="answers" :results="state === 'result' ? handleResult : 0" />
+        <Recap v-if="state === 'result'" @restart="restart":score="handleResult" :answers="answers" :success="quiz.success_message" :failure="quiz.failure_message"/>
     </div>
   </div>
 </template>
@@ -21,7 +21,6 @@ const props = defineProps({
     quiz: Object
 })
 
-const score = ref(0)
 const step = ref(0)
 const state = ref('questions')
 // Initialise un tableau de réponses avec null pour chaque question
@@ -42,14 +41,25 @@ function handleAnswer(answer) {
 }
 const handleResult = computed(() => {
     const correct_answers = props.quiz.questions.map((e) => e.correct_answer)
-    correct_answers.reduce((acc, curr, index) => {
+    return correct_answers.reduce((acc, curr, index) => {
         if (curr === answers[index]) {
-            score.value++
+            acc++
         }
+        return acc
     }, 0)
-    return score.value
 })
+
+const restart = () => {
+    step.value = 0
+    state.value = 'questions'
+    answers.fill(null)
+}
 </script>
 
 <style scoped>
+h1 {
+    margin: 1rem;
+    text-align: center;
+    text-decoration: underline;
+}
 </style>

@@ -1,6 +1,5 @@
 <template>
     <div>
-        <h2>Progress</h2>
         <progress :value="value" :max="max"/>
         <h4>{{ value }}/{{ max }}</h4>
     </div>
