@@ -1,0 +1,57 @@
+{
+    "packages": [
+        {
+            "name": "picocss/pico",
+            "version": "v2.1.1",
+            "version_normalized": "2.1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/picocss/pico.git",
+                "reference": "1039a4788d6abc368d5485ae6bac84a8f0e3096f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/picocss/pico/zipball/1039a4788d6abc368d5485ae6bac84a8f0e3096f",
+                "reference": "1039a4788d6abc368d5485ae6bac84a8f0e3096f",
+                "shasum": ""
+            },
+            "time": "2025-03-15T06:44:28+00:00",
+            "type": "library",
+            "installation-source": "dist",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Lucas Larroche",
+                    "email": "lucas@larroche.com",
+                    "homepage": "https://lucaslarroche.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Minimal CSS Framework for semantic HTML.",
+            "homepage": "https://picocss.com",
+            "keywords": [
+                "CSS-Framework",
+                "css",
+                "dark-mode",
+                "dark-theme",
+                "lightweight",
+                "minimal",
+                "minimalist",
+                "minimalistic",
+                "native-html",
+                "scss-framework",
+                "semantic"
+            ],
+            "support": {
+                "issues": "https://github.com/picocss/pico/issues/",
+                "source": "https://github.com/picocss/pico/tree/v2.1.1"
+            },
+            "install-path": "../picocss/pico"
+        }
+    ],
+    "dev": true,
+    "dev-package-names": []
+}
